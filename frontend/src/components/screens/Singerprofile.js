@@ -1,10 +1,13 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+
 const top100Films = [
-    { title: 'The Shawshank Redemption', year: 1994 },
-    { title: 'The Godfather', year: 1972 },
-    { title: 'The Godfather: Part II', year: 1974 }]
+    { title: 'Jazz' },
+    { title: 'Pop' },
+    { title: 'Hiphop' }]
+
+   
 const SingerProfile=()=>{
 
     return <div className="singerprofile">

@@ -1,17 +1,41 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
+    },
+  }));
 
 const Navbar=()=>{
-    return <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">SingerBook</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">My profile</a></li>
-        <li><a href="badges.html">Appointments</a></li>
-        <li><a href="collapsible.html">New concert</a></li>
-      </ul>
-    </div>
-  </nav>
+    const classes = useStyles();
+    return  <div className={classes.root}>
+    <AppBar position="static">
+      <Toolbar>
+        {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <MenuIcon />
+        </IconButton> */}
+        <Typography variant="h6" className={classes.title}>
+          SingerBook
+        </Typography>
+        <Button color="inherit">My Profile</Button>
+        <Button color="inherit">Appointments</Button>
+        <Button color="inherit">New Concert</Button>
+      </Toolbar>
+    </AppBar>
+  </div>
 
 }
 
