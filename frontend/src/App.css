@@ -1,0 +1,40 @@
+.profilepicture img {
+  width: 300px;
+  height: 300px;
+  border-radius: 150px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profilepicture {
+  padding-top: 4%;
+}
+
+.basicinfo {
+  border: 2px solid gray;
+  margin: 7% 12%;
+  padding: 3%;
+  border-radius: 5%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.genreandarea {
+  margin: 7% 12%;
+  padding: 3%;
+  border-radius: 5%;
+  display: flex;
+}
+
+.genre {
+  border: 2px solid gray;
+  padding: 5%;
+  display: flex;
+}
+
+.singerprofile {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("https://thumbs.dreamstime.com/z/musical-grunge-background-abstract-notes-31964919.jpg");
+}
