@@ -31,10 +31,20 @@
   border: 2px solid gray;
   padding: 5%;
   display: flex;
+  margin: 3%;
+  flex-direction: column;
+}
+
+.area {
+  border: 2px solid gray;
+  padding: 5%;
+  display: flex;
+  margin: 3%;
+  flex-direction: column;
 }
 
 .singerprofile {
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("https://thumbs.dreamstime.com/z/musical-grunge-background-abstract-notes-31964919.jpg");
+  background-image: url("https://thumbs.dreamstime.com/z/music-notes-20648928.jpg");
 }
