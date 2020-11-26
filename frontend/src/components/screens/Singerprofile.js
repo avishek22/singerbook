@@ -24,26 +24,32 @@ const SingerProfile=()=>{
 
         <div className="genreandarea" style={{display:'flex'}}>
             <div className="genre">
+            <div style={{display:'flex'}}>
             <Autocomplete
       id="combo-box-demo"
       options={top100Films}
       getOptionLabel={(option) => option.title}
-      style={{ width: 300 }}
+      style={{ width: '70%' }}
       renderInput={(params) => <TextField {...params} label="Genre" variant="outlined" />}
     />
+    <i class="large material-icons">add_circle</i>
+    </div>
     <div className="genreitems" style={{display:'flex',flexWrap:'wrap'}}>
         <div className="genreitemstext" style={{border:'2px solid gray',margin:'5%',padding:'5% 10%',borderRadius:'20%'}}><div style={{display:'flex'}}><p>Bad</p> <i class="material-icons" style={{marginLeft:'30%'}}>cancel</i></div></div>
         <div className="genreitemstext" style={{border:'2px solid gray',margin:'5%',padding:'5% 10%',borderRadius:'20%'}}><div style={{display:'flex'}}><p>Good</p> <i class="material-icons" style={{marginLeft:'30%'}}>cancel</i></div></div>
         <div className="genreitemstext" style={{border:'2px solid gray',margin:'5%',padding:'5% 10%',borderRadius:'20%'}}><div style={{display:'flex'}}><p>Very Nice</p> <i class="material-icons" style={{marginLeft:'30%'}}>cancel</i></div></div>
     </div>
             </div>
-            <div className="area"><Autocomplete
+            <div className="area"><div style={{display:'flex'}}>
+            <Autocomplete
       id="combo-box-demo"
       options={top100Films}
       getOptionLabel={(option) => option.title}
-      style={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Area" variant="outlined" />}
+      style={{ width: '70%' }}
+      renderInput={(params) => <TextField {...params} label="Genre" variant="outlined" />}
     />
+    <i class="large material-icons">add_circle</i>
+    </div>
     <div className="areaitems" style={{display:'flex',flexWrap:'wrap'}}>
         <div className="genreitemstext" style={{border:'2px solid gray',margin:'5%',padding:'5% 10%',borderRadius:'20%'}}><div style={{display:'flex'}}><p>Bad</p> <i class="material-icons" style={{marginLeft:'30%'}}>cancel</i></div></div>
         <div className="genreitemstext" style={{border:'2px solid gray',margin:'5%',padding:'5% 10%',borderRadius:'20%'}}><div style={{display:'flex'}}><p>Good</p> <i class="material-icons" style={{marginLeft:'30%'}}>cancel</i></div></div>
