@@ -110,6 +110,46 @@ const SingerProfile=()=>{
       });
   };
 
+
+  const removegenre = (genreoption) => {
+    fetch(`http://localhost:4000/removegenre`, {
+      method: "put",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+        "Content-Type": "application/json"
+      },
+      body:JSON.stringify({
+          genre:genreoption
+      })
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        
+        reload()
+        
+      });
+  };
+
+  const removearea = (areaoption) => {
+    fetch(`http://localhost:4000/removearea`, {
+      method: "put",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+        "Content-Type": "application/json"
+      },
+      body:JSON.stringify({
+          area:areaoption
+      })
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        
+        reload()
+        
+      });
+  };
     return <div className="singerprofile">
         <div className="profilepicture">
             <img src="https://i.ytimg.com/vi/BNcxTNrtRdk/maxresdefault.jpg"></img>
@@ -140,14 +180,14 @@ const SingerProfile=()=>{
           
       />}
     />
-    <i class="large material-icons" onClick={()=>{
+    <i class="large material-icons" style={{cursor:'pointer'}} onClick={()=>{
         console.log(value)
         addgenre(value)
     }}>add_circle</i>
     </div>
     <div className="genreitems" style={{display:'flex',flexWrap:'wrap'}}>
     {genre.map((item)=>{
-       return <div className="genreitemstext" style={{border:'2px solid gray',margin:'5%',padding:'5% 10%',borderRadius:'20%'}} key={item}><div style={{display:'flex'}}><p>{item}</p> <i class="material-icons" style={{marginLeft:'30%'}}>cancel</i></div></div>
+       return <div className="genreitemstext" style={{border:'2px solid gray',margin:'5%',padding:'5% 10%',borderRadius:'20%'}} key={item}><div style={{display:'flex'}}><p>{item}</p> <i class="material-icons" style={{marginLeft:'30%',cursor:'pointer'}} onClick={()=>{console.log(item);removegenre(item)}}>cancel</i></div></div>
     })}
         
         
@@ -168,14 +208,14 @@ const SingerProfile=()=>{
       
       renderInput={(params) => <TextField {...params} label="Area" variant="outlined" />}
     />
-    <i class="large material-icons" onClick={()=>{
+    <i class="large material-icons"  style={{cursor:'pointer'}} onClick={()=>{
         console.log(value1)
         addarea(value1)
         }}>add_circle</i>
     </div>
     <div className="areaitems" style={{display:'flex',flexWrap:'wrap'}}>
     {area.map((item)=>{
-        return <div className="genreitemstext" style={{border:'2px solid gray',margin:'5%',padding:'5% 10%',borderRadius:'20%'}} key={item}><div style={{display:'flex'}} ><p>{item}</p> <i class="material-icons" style={{marginLeft:'30%'}}>cancel</i></div></div>
+        return <div className="genreitemstext" style={{border:'2px solid gray',margin:'5%',padding:'5% 10%',borderRadius:'20%'}} key={item}><div style={{display:'flex'}} ><p>{item}</p> <i class="material-icons" style={{marginLeft:'30%',cursor:'pointer'}} onClick={()=>{console.log(item); removearea(item)}}>cancel</i></div></div>
     })}
         
         
