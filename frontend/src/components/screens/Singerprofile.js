@@ -46,7 +46,7 @@ const SingerProfile=()=>{
       options={top100Films}
       getOptionLabel={(option) => option.title}
       style={{ width: '70%' }}
-      renderInput={(params) => <TextField {...params} label="Genre" variant="outlined" />}
+      renderInput={(params) => <TextField {...params} label="Area" variant="outlined" />}
     />
     <i class="large material-icons">add_circle</i>
     </div>
