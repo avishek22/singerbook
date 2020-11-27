@@ -1,14 +1,114 @@
-import React from 'react'
+
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import React, { useEffect, useState, useContext } from "react";
+import { UserContext } from "../../App";
+import { Link, useHistory } from "react-router-dom";
 
-const top100Films = [
+const genre1 = [
     { title: 'Jazz' },
     { title: 'Pop' },
     { title: 'Hiphop' }]
 
+    const area1 = [
+        { title: 'Chennai' },
+        { title: 'Punjab' },
+        { title: 'Gujrat' }]
    
 const SingerProfile=()=>{
+
+    const [firstname, setFirstname] = useState("");
+    const [lastname, setLastname] = useState("");
+    const[area,setArea]=useState([])
+    const[genre,setGenre]=useState([])
+    const [value, setValue] = React.useState(genre[0]);
+    const [value1, setValue1] = React.useState(area[0]);
+//   const { state, dispatch } = useContext(UserContext);
+//   const [postno, setPostNo] = useState("0");
+//   const [loading, setLoading] = useState(false);
+//   const [bio, setBio] = useState("");
+//   const [newusername, setNewUsername] = useState("");
+//   const [followers, setFollowers] = useState("");
+//   const [following, setFollowing] = useState("");
+//   const [accounttype, setAccounttype] = useState("");
+//   const [dp, setDp] = useState("");
+  useEffect(() => {
+    fetch("http://localhost:4000/singerprofile", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+         console.log(result.user.Firstname);
+         setFirstname(result.user.Firstname);
+         setLastname(result.user.Lastname);
+         setArea(result.user.area)
+         setGenre(result.user.genre)
+         console.log(result.user.genre)
+      });
+  }, []);
+
+  const reload=()=>{
+
+    fetch("http://localhost:4000/singerprofile", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+         console.log(result.user.Firstname);
+         setFirstname(result.user.Firstname);
+         setLastname(result.user.Lastname);
+         setArea(result.user.area)
+         setGenre(result.user.genre)
+         console.log(result.user.area)
+      });
+
+  }
+
+  const addgenre = (genreoption) => {
+    fetch(`http://localhost:4000/addgenre`, {
+      method: "put",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+        "Content-Type": "application/json"
+      },
+      body:JSON.stringify({
+          genre:genreoption
+      })
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        
+        reload()
+        
+      });
+  };
+
+  const addarea = (areaoption) => {
+    fetch(`http://localhost:4000/addarea`, {
+      method: "put",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+        "Content-Type": "application/json"
+      },
+      body:JSON.stringify({
+          area:areaoption
+      })
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        
+        reload()
+        
+      });
+  };
 
     return <div className="singerprofile">
         <div className="profilepicture">
@@ -16,7 +116,7 @@ const SingerProfile=()=>{
         </div>
         
         <div className="basicinfo">
-        <div style={{display:'flex',padding:'2%'}}><h5>Name: </h5><h5>Avishek Bhattacharjee</h5></div>
+        <div style={{display:'flex',padding:'2%'}}><h5>Name: </h5><h5>{firstname} {lastname}</h5></div>
         <div style={{display:'flex',padding:'2%'}}><h5>Age: </h5><h5>20</h5></div>
         <div style={{display:'flex',padding:'2%'}}><h5>Gender: </h5><h5>Male</h5></div>
             
@@ -27,33 +127,58 @@ const SingerProfile=()=>{
             <div style={{display:'flex'}}>
             <Autocomplete
       id="combo-box-demo"
-      options={top100Films}
+      options={genre1}
       getOptionLabel={(option) => option.title}
       style={{ width: '70%' }}
-      renderInput={(params) => <TextField {...params} label="Genre" variant="outlined" />}
+      value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue.title);
+          console.log(newValue.title)
+        }}
+     
+      renderInput={(params) => <TextField {...params} label="Genre" variant="outlined" 
+          
+      />}
     />
-    <i class="large material-icons">add_circle</i>
+    <i class="large material-icons" onClick={()=>{
+        console.log(value)
+        addgenre(value)
+    }}>add_circle</i>
     </div>
     <div className="genreitems" style={{display:'flex',flexWrap:'wrap'}}>
-        <div className="genreitemstext" style={{border:'2px solid gray',margin:'5%',padding:'5% 10%',borderRadius:'20%'}}><div style={{display:'flex'}}><p>Bad</p> <i class="material-icons" style={{marginLeft:'30%'}}>cancel</i></div></div>
-        <div className="genreitemstext" style={{border:'2px solid gray',margin:'5%',padding:'5% 10%',borderRadius:'20%'}}><div style={{display:'flex'}}><p>Good</p> <i class="material-icons" style={{marginLeft:'30%'}}>cancel</i></div></div>
-        <div className="genreitemstext" style={{border:'2px solid gray',margin:'5%',padding:'5% 10%',borderRadius:'20%'}}><div style={{display:'flex'}}><p>Very Nice</p> <i class="material-icons" style={{marginLeft:'30%'}}>cancel</i></div></div>
+    {genre.map((item)=>{
+       return <div className="genreitemstext" style={{border:'2px solid gray',margin:'5%',padding:'5% 10%',borderRadius:'20%'}} key={item}><div style={{display:'flex'}}><p>{item}</p> <i class="material-icons" style={{marginLeft:'30%'}}>cancel</i></div></div>
+    })}
+        
+        
     </div>
             </div>
             <div className="area"><div style={{display:'flex'}}>
             <Autocomplete
       id="combo-box-demo"
-      options={top100Films}
+      options={area1}
       getOptionLabel={(option) => option.title}
       style={{ width: '70%' }}
+      value={value1}
+        onChange={(event, newValue) => {
+            
+          setValue1(newValue.title);
+          console.log(newValue.title)
+        }}
+      
       renderInput={(params) => <TextField {...params} label="Area" variant="outlined" />}
     />
-    <i class="large material-icons">add_circle</i>
+    <i class="large material-icons" onClick={()=>{
+        console.log(value1)
+        addarea(value1)
+        }}>add_circle</i>
     </div>
     <div className="areaitems" style={{display:'flex',flexWrap:'wrap'}}>
-        <div className="genreitemstext" style={{border:'2px solid gray',margin:'5%',padding:'5% 10%',borderRadius:'20%'}}><div style={{display:'flex'}}><p>Bad</p> <i class="material-icons" style={{marginLeft:'30%'}}>cancel</i></div></div>
-        <div className="genreitemstext" style={{border:'2px solid gray',margin:'5%',padding:'5% 10%',borderRadius:'20%'}}><div style={{display:'flex'}}><p>Good</p> <i class="material-icons" style={{marginLeft:'30%'}}>cancel</i></div></div>
-        <div className="genreitemstext" style={{border:'2px solid gray',margin:'5%',padding:'5% 10%',borderRadius:'20%'}}><div style={{display:'flex'}}><p>Very Nice</p> <i class="material-icons" style={{marginLeft:'30%'}}>cancel</i></div></div>
+    {area.map((item)=>{
+        return <div className="genreitemstext" style={{border:'2px solid gray',margin:'5%',padding:'5% 10%',borderRadius:'20%'}} key={item}><div style={{display:'flex'}} ><p>{item}</p> <i class="material-icons" style={{marginLeft:'30%'}}>cancel</i></div></div>
+    })}
+        
+        
     </div>
     </div>
         </div>

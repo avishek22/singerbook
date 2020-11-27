@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 
 import { reducer, initialState } from "./reducer/userReducer";
 import Navbar from './components/Navbar'
-import SingerProfie from './components/screens/Singerprofile'
+import Login from './components/screens/Login'
 import SingerProfile from "./components/screens/Singerprofile";
 
 export const UserContext = createContext();
@@ -28,6 +28,9 @@ const Routing = () => {
       <Route exact path="/">
         <Navbar></Navbar>
         <SingerProfile></SingerProfile>
+      </Route>
+      <Route exact path="/login">
+        <Login></Login>
       </Route>
       
     </Switch>
