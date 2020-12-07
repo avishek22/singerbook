@@ -6,6 +6,7 @@ import { reducer, initialState } from "./reducer/userReducer";
 import Navbar from './components/Navbar'
 import Login from './components/screens/Login'
 import SingerProfile from "./components/screens/Singerprofile";
+import Test from "./components/screens/test";
 
 export const UserContext = createContext();
 
@@ -31,6 +32,9 @@ const Routing = () => {
       </Route>
       <Route exact path="/login">
         <Login></Login>
+      </Route>
+      <Route exact path="/test">
+        <Test></Test>
       </Route>
       
     </Switch>

@@ -1,10 +1,30 @@
 .profilepicture img {
   width: 300px;
   height: 300px;
-  border-radius: 150px;
+  /* border-radius: 150px; */
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
+  margin-left: 90%;
+}
+.info {
+  margin-left: 30%;
+}
+
+@media screen and (max-width: 600px) {
+  .profilepicture img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .profilepicture {
+    flex-wrap: wrap;
+  }
+  .location {
+    flex-wrap: wrap;
+  }
+  .info {
+    margin-left: 4%;
+  }
 }
 
 .profilepicture {
@@ -45,7 +65,9 @@
 }
 
 .singerprofile {
-  background-size: cover;
+  /* margin-left: auto;
+  margin-right: auto; */
+  /* background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("https://thumbs.dreamstime.com/z/music-notes-20648928.jpg");
+  background-image: url("https://thumbs.dreamstime.com/z/music-notes-20648928.jpg"); */
 }
