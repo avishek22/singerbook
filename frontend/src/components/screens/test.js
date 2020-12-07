@@ -168,6 +168,25 @@ const SingerProfile=()=>{
         </div>
         </div>
         <div className="border"></div>
+        <div className="profilepicture" style={{display:'flex'}}>
+        <div><h3 className='imgreplace' style={{color:'gray',textDecoration:'underline'}}>SONG LINKS</h3></div>
+        <div></div>
+        <div className='info' style={{display:'flex',flexDirection:'column'}}>
+        <h3 style={{color:'gray',textDecoration:'underline'}}>ABOUT ME</h3>
+        <div><div className='location' style={{display:'flex'}}><div style={{padding:'2% 0% 0% 2%',display:'flex'}}><h5 style={{color:'gray'}}>Phone:</h5><h5 style={{marginLeft:'3%'}}>1234567</h5></div>
+        
+        </div>
+        <div style={{display:'flex',paddingLeft:'2%'}}><h5 style={{color:'gray'}}>Age:</h5><h5 style={{marginLeft:'3%'}}>20</h5></div>
+        <div style={{display:'flex',paddingLeft:'2%',flexWrap:'wrap'}}><h5 style={{color:'gray'}}>Address:</h5><h5 style={{marginLeft:'3%'}}></h5></div>
+        <div style={{display:'flex',paddingLeft:'2%'}}><h5 style={{color:'gray'}}>Email:</h5><h5 style={{marginLeft:'3%'}}></h5></div>
+        
+        </div>
+        <div ></div>
+        
+            
+        </div>
+        </div>
+        
         
         
 
