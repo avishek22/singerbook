@@ -167,6 +167,7 @@ const SingerProfile=()=>{
             
         </div>
         </div>
+        <div className="border"></div>
         
         
 
