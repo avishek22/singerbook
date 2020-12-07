@@ -169,10 +169,13 @@ const SingerProfile=()=>{
         </div>
         <div className="border"></div>
         <div className="profilepicture" style={{display:'flex'}}>
-        <div><h3 className='imgreplace' style={{color:'gray',textDecoration:'underline'}}>SONG LINKS</h3></div>
+        <div ><h3 className='imgreplace' style={{color:'gray',textDecoration:'underline'}}>SONG LINKS</h3>
+        <a className='imgreplace' href="http://www.google.com">Choo loo</a>
+        </div>
         <div></div>
-        <div className='info' style={{display:'flex',flexDirection:'column'}}>
+        <div className='info1' style={{display:'flex',flexDirection:'column'}}>
         <h3 style={{color:'gray',textDecoration:'underline'}}>ABOUT ME</h3>
+        
         <div><div className='location' style={{display:'flex'}}><div style={{padding:'2% 0% 0% 2%',display:'flex'}}><h5 style={{color:'gray'}}>Phone:</h5><h5 style={{marginLeft:'3%'}}>1234567</h5></div>
         
         </div>

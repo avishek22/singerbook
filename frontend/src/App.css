@@ -9,17 +9,22 @@
 }
 .imgreplace {
   width: 300px;
-  height: 300px;
+
   border-radius: 1%;
   display: block;
   /* margin-left: auto;
   margin-right: auto; */
   margin-left: 90%;
   padding-right: 10%;
-  border-right: 1px solid gray;
 }
 .info {
   margin-left: 30%;
+}
+
+.info1 {
+  margin-left: 30%;
+  padding-left: 10%;
+  border-left: 1px solid grey;
 }
 .profilepicture {
   margin-bottom: 10%;
@@ -47,8 +52,13 @@
   .location {
     flex-wrap: wrap;
   }
-  .info {
+  .info,
+  .info1 {
     margin-left: 4%;
+  }
+  .info1 {
+    padding-left: 0;
+    border: 0;
   }
 }
 
