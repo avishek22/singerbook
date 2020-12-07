@@ -21,6 +21,9 @@ router.get("/singerprofile", requireLogin, (req, res) => {
   router.put("/addarea", requireLogin, (req, res) => {
      console.log(req.user._id);
     console.log(req.body.area);
+    if(!req.body.area){
+      return res.status(422).json({ error: "Please add an area" });
+    }
     User.findByIdAndUpdate(req.user._id, {
       $push: { area: req.body.area},
     })
@@ -32,7 +35,12 @@ router.get("/singerprofile", requireLogin, (req, res) => {
       });
   });
 
+
   router.put("/addgenre",requireLogin,(req,res)=>{
+    if(!req.body.genre){
+      return res.status(422).json({ error: "Please add a genre" });
+    }
+    
       User.findByIdAndUpdate(req.user._id,{
         $push:{genre:req.body.genre},
   }).then((result)=>{
