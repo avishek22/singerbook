@@ -2,6 +2,7 @@
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import React, { useEffect, useState, useContext } from "react";
+import Swal from 'sweetalert2'
 import { UserContext } from "../../App";
 import { Link, useHistory } from "react-router-dom";
 
@@ -83,11 +84,16 @@ const SingerProfile=()=>{
     })
       .then((res) => res.json())
       .then((result) => {
+        if(result.error){
+          Swal.fire("Error!",result.error,"error")
+        }
         console.log(result);
         
         reload()
         
-      });
+      }).catch((err)=>{
+
+      })
   };
 
   const addarea = (areaoption) => {
@@ -103,6 +109,9 @@ const SingerProfile=()=>{
     })
       .then((res) => res.json())
       .then((result) => {
+        if(result.error){
+          Swal.fire("Error!",result.error,"error")
+        }
         console.log(result);
         
         reload()
@@ -180,6 +189,10 @@ const SingerProfile=()=>{
       style={{ width: '70%' }}
       value={value}
         onChange={(event, newValue) => {
+          if(!newValue){
+            alert("Function not permitted")
+            window.location.reload()
+          }
           setValue(newValue.title);
           console.log(newValue.title)
         }}
@@ -209,7 +222,10 @@ const SingerProfile=()=>{
       style={{ width: '70%' }}
       value={value1}
         onChange={(event, newValue) => {
-            
+          if(!newValue){
+            alert("Function not permitted")
+            return
+          }
           setValue1(newValue.title);
           console.log(newValue.title)
         }}
