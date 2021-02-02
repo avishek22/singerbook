@@ -90,6 +90,26 @@ const SingerProfile=()=>{
       });
   };
 
+  const checkarea = (areaoption) => {
+    fetch(`http://localhost:4000/checkarea`, {
+      method: "put",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+        "Content-Type": "application/json"
+      },
+      body:JSON.stringify({
+          area:areaoption
+      })
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        
+        reload()
+        
+      });
+  };
+
   const addarea = (areaoption) => {
     fetch(`http://localhost:4000/addarea`, {
       method: "put",
@@ -242,6 +262,7 @@ const SingerProfile=()=>{
     <i class="large material-icons"  style={{cursor:'pointer'}} onClick={()=>{
         console.log(value1)
         addarea(value1)
+        checkarea(value1)
         }}>add_circle</i>
     </div>
     <div className="areaitems" style={{display:'flex',flexWrap:'wrap'}}>

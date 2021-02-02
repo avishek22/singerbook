@@ -23,11 +23,16 @@ const userSchema = new mongoose.Schema({
     default:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRk8cyUrYvHcRDy0ogeHCORJ4TnGpXq1PYpwQ&usqp=CAU",
   },
+  bio: {
+    type: String,
+    default:
+      "Hey Guys, I am a pssionate musician willing to sing and focus more on my music career. I am happy to help! Well Done guys, , what do you need ypu assshole",
+  },
   salary:{
       type:Number,
       default:0
   },
-  
+  category: [{ type: String }],
   genre: [{ type: String }],
   area: [{ type: String,default:"hi" }],
   description:{
