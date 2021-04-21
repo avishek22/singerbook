@@ -1,10 +1,11 @@
 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext ,useRef} from "react";
 import Swal from 'sweetalert2'
 import { UserContext } from "../../App";
 import { Link, useHistory } from "react-router-dom";
+import materialize from "materialize-css";
 
 let c=0,a=0;
 const genre1 = [
@@ -22,7 +23,7 @@ const genre1 = [
           { title: 'Birthdays' }]
    
 const SingerProfile=()=>{
-
+  const editprofile = useRef(null);
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
     const[bio,setBio]=useState("")
@@ -32,6 +33,15 @@ const SingerProfile=()=>{
     const [value, setValue] = React.useState(genre[0]);
     const [value1, setValue1] = React.useState(area[0]);
     const [value2, setValue2] = React.useState(category[0]);
+    const [editfirstname, setNewFirstname] = useState(
+      localStorage.getItem("firstname")
+    );
+    const [editlastname, setNewLastname] = useState(
+      localStorage.getItem("lastname")
+    );
+    const [editbio, setNewbio] = useState(
+      localStorage.getItem("bio")
+    );
 //   const { state, dispatch } = useContext(UserContext);
 //   const [postno, setPostNo] = useState("0");
 //   const [loading, setLoading] = useState(false);
@@ -42,6 +52,7 @@ const SingerProfile=()=>{
 //   const [accounttype, setAccounttype] = useState("");
 //   const [dp, setDp] = useState("");
   useEffect(() => {
+    materialize.Modal.init(editprofile.current);
     fetch("http://localhost:4000/singerprofile", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
@@ -62,6 +73,35 @@ const SingerProfile=()=>{
          a=0;
       });
   }, []);
+
+  const editprofile1 = (editfirstname, editlastname, editbio) => {
+    
+    fetch("http://localhost:4000/editprofile", {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+      body: JSON.stringify({
+        firstname:editfirstname,
+        lastname:editlastname,
+        bio:editbio
+        // editpostid: localStorage.getItem("editpostid"),
+        // editpostcaption: localStorage.getItem("editpostcaption"),
+      }),
+    })
+      .then((res) => {
+        res.json().then((data) => {
+          console.log(data);
+          
+
+         
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const reload=()=>{
 
@@ -235,7 +275,7 @@ const SingerProfile=()=>{
           localStorage.setItem('lastname', lastname)
           localStorage.setItem('bio',bio)
           
-        }}>Edit</button>
+        }} data-target='modal1' className='modal-trigger'>Edit</button>
         </div>
         <div ></div>
         
@@ -373,6 +413,38 @@ const SingerProfile=()=>{
     
     </div>
         </div>
+        <div id="modal1" className="modal profile " ref={editprofile}>
+        <div className="modal-content " style={{ padding: "10% 30%" }}>
+          <div >
+          <div >
+          <label>First name</label>
+          <input type='text' value={editfirstname} onChange={(e) => {
+            console.log(e.target.value);
+            setNewFirstname(e.target.value)
+            
+          }}></input>
+          <label>Last name</label>
+          <input type='text' value={editlastname} onChange={(e) => {
+            console.log(e.target.value);
+            setNewLastname(e.target.value)
+            
+          }}></input>
+          <label>Bio</label>
+          <textarea type='text' value={editbio}  rows="8"  cols="200" onChange={(e) => {
+            console.log(e.target.value);
+            setNewbio(e.target.value)
+            
+          }}></textarea>
+          <button  type='submit'
+          onClick={()=>{
+            console.log(editfirstname,editlastname,editbio)
+            editprofile1(editfirstname,editlastname,editbio)
+            reload()
+          }}>submit</button>
+          </div>
+          </div>
+        </div>
+      </div>
     </div>
 }
 

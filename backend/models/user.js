@@ -32,6 +32,8 @@ const userSchema = new mongoose.Schema({
       type:Number,
       default:0
   },
+  appointmentrequest: [{ type: mongoose.Schema.Types.ObjectID, ref: "User" }],
+  appointment: [{ type: mongoose.Schema.Types.ObjectID, ref: "User" }],
   category: [{ type: String }],
   genre: [{ type: String }],
   area: [{ type: String,default:"hi" }],
